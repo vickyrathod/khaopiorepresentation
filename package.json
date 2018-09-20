@@ -1,0 +1,42 @@
+{
+  "name": "nodeapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=app nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vickyrathod/nodeapp.git"
+  },
+  "author": "vicky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vickyrathod/nodeapp/issues"
+  },
+  "homepage": "https://github.com/vickyrathod/nodeapp#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "debug": "^4.0.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.4",
+    "path": "^0.12.7",
+    "request": "^2.88.0"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": 2500,
+    "env": {
+      "PORT": 3000,
+      "APIPATH":"http://boot:8080/user/save"
+    }
+  }
+}
