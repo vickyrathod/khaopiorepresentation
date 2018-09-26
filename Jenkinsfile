@@ -44,7 +44,7 @@ pipeline {
 
 		agent any
 		steps{
-		 sh "echo 'sh khaopio/restart.sh'| ssh -i ${JENKINS_HOME}/khaopio/id_rsa khaopio007@khaopio.in"
+		 sh "echo 'sh khaopio/restart.sh'| ssh -i ${JENKINS_HOME}/sshkeys/id_rsa khaopio007@khaopio.in"
 		}
 	}
     }
