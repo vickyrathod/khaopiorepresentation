@@ -11,9 +11,6 @@ pipeline {
             }
         }
         stage('Build') {
-	when{
-	    branch "master*"
-	  }
             agent {
         docker {
             image 'node:6-alpine' 
@@ -21,6 +18,9 @@ pipeline {
         	}
     	}
             steps {
+		when{
+	    branch "master*"
+	  }
                 sh 'npm install' 
             }
         }
