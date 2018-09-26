@@ -1,5 +1,8 @@
 pipeline {
     agent none
+	when{
+	    branch 'master'
+	  }
     stages {
         stage('SCM') {
             agent any
@@ -32,7 +35,7 @@ pipeline {
 	stage('clean space') {
 		agent any
 		steps{
-		 sh "docker rmi \$(docker images | grep 'vicky123/nodeapp')"
+		 sh "docker rmi -f $(docker images --format '{{.Repository}}' | grep 'vicky123/nodeapp')"
 		}
 	}
 	
