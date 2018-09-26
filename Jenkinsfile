@@ -4,7 +4,7 @@ pipeline {
         stage('SCM') {
             agent any
 	when{
-	    branch "master"
+	    branch "master*"
 	  }
             steps {
                 git url: "https://github.com/vickyrathod/khaopiorepresentation.git"
@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
 	when{
-	    branch "master"
+	    branch "master*"
 	  }
             agent {
         docker {
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('tag and publish') {
 		when{
-	    branch "master"
+	    branch "master*"
 	  }
             agent any
             steps {
@@ -40,7 +40,7 @@ pipeline {
         }
 	stage('clean space') {
 		when{
-	    branch "master"
+	    branch "master*"
 	  }
 		agent any
 		steps{
@@ -51,7 +51,7 @@ pipeline {
 	stage('deploy') {
 
 		when{
-	    branch "master"
+	    branch "master*"
 	  }
 		agent any
 		steps{
