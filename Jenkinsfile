@@ -4,7 +4,7 @@ pipeline {
         stage('SCM') {
             agent any
             steps {
-                git url: "https://github.com/vickyrathod/khaopiobackend.gi"
+                git url: "https://github.com/vickyrathod/khaopiorepresentation.git"
             }
         }
         stage('Build') {
