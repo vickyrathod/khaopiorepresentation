@@ -3,10 +3,11 @@ pipeline {
     stages {
         stage('SCM') {
             agent any
+	
+            steps {
 	when{
 	    branch "master*"
 	  }
-            steps {
                 git url: "https://github.com/vickyrathod/khaopiorepresentation.git"
             }
         }
@@ -25,11 +26,12 @@ pipeline {
             }
         }
         stage('tag and publish') {
-		when{
-	    branch "master*"
-	  }
+	
             agent any
             steps {
+			when{
+	    branch "master*"
+	  }
                 sh "docker build -t vicky123/nodeapp:${env.BUILD_ID} .";
 		sh "docker build -t vicky123/nodeapp:latest .";
                 withDockerRegistry([ credentialsId: "6544de7e-17a4-4576-9b9b-e86bc1e4f903", url: "" ]){
@@ -39,22 +41,23 @@ pipeline {
             }
         }
 	stage('clean space') {
-		when{
-	    branch "master*"
-	  }
 		agent any
 		steps{
+				when{
+	    branch "master*"
+	  }
+
 		 sh "docker rmi -f \$(docker images --format '{{.Repository}}' | grep 'vicky123/nodeapp')"
 		}
 	}
 	
 	stage('deploy') {
 
+		agent any
+		steps{
 		when{
 	    branch "master*"
 	  }
-		agent any
-		steps{
 		 sh "echo 'sh khaopio/restart.sh'| ssh -i ${JENKINS_HOME}/khaopio/id_rsa khaopio007@khaopio.in"
 		}
 	}
