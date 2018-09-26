@@ -35,7 +35,7 @@ pipeline {
 	stage('clean space') {
 		agent any
 		steps{
-		 sh "docker rmi -f $(docker images --format '{{.Repository}}' | grep 'vicky123/nodeapp')"
+		 sh "docker rmi -f \$(docker images --format '{{.Repository}}' | grep 'vicky123/nodeapp')"
 		}
 	}
 	
